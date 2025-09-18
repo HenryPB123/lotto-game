@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lotto Game</title>
+    <link rel="stylesheet" href="styles1.css" />
+  </head>
+  <audio id="tic-sound" src="audioGame.m4a" preload="auto"></audio>
+
+  <body>
+    <header>
+      <h1>Juego de Apuesta</h1>
+    </header>
+
+    <main>
+      <section class="range" id="range">
+        <div class="range_field" id="range_field">
+          <h2>Hola, te damos la bienvenida a este juego de Apuestas.</h2>
+          <p>
+            Empieza por agregar el número de jugadores a participar y luego
+            ingresa el valor de la apuesta.
+          </p>
+          <form class="form_bet">
+            <div class="container_fields">
+              <div class="form_bet_field">
+                <label for="input_range">Ingresar número: </label>
+                <input
+                  id="input_range"
+                  type="text"
+                  placeholder="Entre 2 a 100"
+                />
+              </div>
+              <div class="form_bet_field">
+                <label for="input_amount">Ingresar apuesta: </label>
+                <input
+                  id="input_amount"
+                  type="text"
+                  placeholder="5000, 10.000..."
+                />
+              </div>
+            </div>
+
+            <button id="set_range" type="button">Fijar Apuesta</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="add_player" id="add_player" style="display: none">
+        <div class="add_player_form" id="add_player_form">
+          <h2>Agregar Jugador</h2>
+          <p>
+            Escribe un nombre y selecciona un número, para participar en el
+            juego.
+          </p>
+          <form class="form">
+            <div class="container_fields">
+              <div class="field">
+                <label for="name">Nombre del jugador</label>
+                <input id="name" type="text" />
+              </div>
+              <div class="field">
+                <label for="numbers">Número</label>
+                <select name="numbers" id="numbers"></select>
+              </div>
+            </div>
+            <button id="add" class="form_button">Agregar Jugador</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="display_players" style="display: none"></section>
+    </main>
+    <footer>Juego desarrollado por Henry Peralta</footer>
+    <script src="app1.js"></script>
+  </body>
+</html>

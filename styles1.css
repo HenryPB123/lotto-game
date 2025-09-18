@@ -1,0 +1,285 @@
+/* ===========================
+   1. RESETEO Y ESTILOS BASE
+   =========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #2c3e50, #3498db);
+  color: #f4f4f4;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+  background: #1a252f;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  margin-top: auto;
+  background: #1a252f;
+  font-size: 0.9rem;
+}
+
+/* ===========================
+   2. LAYOUT PRINCIPAL
+   =========================== */
+main {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+section {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ===========================
+   3. FORMULARIOS
+   =========================== */
+.range {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin: 0;
+}
+.range_field h2 {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.container_fields {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form_bet_field {
+  padding: 0.2rem;
+  display: flex;
+}
+
+.add_player {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.add_player h2 {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+form {
+  padding: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #fff;
+}
+
+input,
+select {
+  align-items: center;
+  margin-top: 0.2rem;
+  padding: 10px;
+  border: none;
+  border-radius: 0.4rem;
+  font-size: 1rem;
+  width: 100%;
+  height: 2.5rem;
+}
+
+button {
+  background: #f39c12;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #d35400;
+  transform: scale(1.05);
+}
+
+/* ===========================
+   4. LISTA DE JUGADORES
+   =========================== */
+.display_players {
+  flex-direction: column;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+.display_players h2 {
+  text-align: center;
+}
+
+#section_div_player {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+.info_player {
+  flex: 1 1 250px; /* base 220px, crece si hay espacio */
+  max-width: 300px; /* no se vuelven gigantes en pantallas grandes */
+  background: #2c3e50;
+  color: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+}
+
+.delete_player {
+  margin-top: 0.5rem;
+  text-align: center;
+  height: fit-content;
+}
+
+#delete_all_players,
+#play {
+  width: 90%;
+}
+
+.player_card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.player_card:hover {
+  transform: translateY(-5px);
+}
+
+/* ===========================
+   5. RULETA OVERLAY
+   =========================== */
+#roulette_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(20, 20, 20, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#roulette_number {
+  font-size: 8rem;
+  color: #f5a623;
+  text-shadow: 0 0 25px rgba(245, 166, 35, 0.8),
+    0 0 50px rgba(245, 166, 35, 0.5);
+  animation: pulse 0.5s infinite alternate;
+}
+
+.winner-highlight {
+  color: #2ecc71;
+  text-shadow: 0 0 35px rgba(46, 204, 113, 0.8),
+    0 0 70px rgba(46, 204, 113, 0.5);
+  animation: winnerZoom 1.5s ease forwards;
+}
+
+/* Animación mientras gira */
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* Animación final número ganador */
+@keyframes winnerZoom {
+  0% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+/* ===========================
+   6. RESPONSIVE
+   =========================== */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  #roulette_number {
+    font-size: 5rem;
+  }
+
+  section {
+    padding: 15px;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .container_fields {
+    flex-direction: column;
+    /* align-items: flex-start; */
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 10px;
+  }
+
+  #roulette_number {
+    font-size: 3.5rem;
+  }
+}
