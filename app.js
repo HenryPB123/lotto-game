@@ -44,9 +44,14 @@
     const inputRange = document.getElementById("input_range");
     const inputAmount = document.getElementById("input_amount");
     const sectionPlayer = document.getElementById("add_player");
-    const addPlayerForm = document.getElementById("add_player_form"); //!cambio Agregado
+    const addPlayerForm = document.getElementById("add_player_form");
+    console.log("INPUT RANGE", inputRange.value !== "");
+    console.log("INPUT AMOUNT", inputAmount.value !== "");
 
-    if (inputRange && inputAmount) {
+    if (inputRange.value === "" || inputAmount.value === "") {
+      alert("No puedes continuar, debes llenar los datos requeridos!");
+      return;
+    } else {
       const range = parseInt(inputRange.value);
       const amount = parseInt(inputAmount.value);
       if (range !== 0 && amount !== 0) {
@@ -60,7 +65,7 @@
           state.prize = range * amount * 0.8;
           setMessageRange(state.range, state.amount, state.prize);
 
-          // 👇 Forzamos a mostrar la sección de jugadores en cada ronda
+          //👇 Forzamos a mostrar la sección de jugadores en cada ronda
           sectionPlayer.style.display = "flex";
           if (addPlayerForm) addPlayerForm.style.display = "block";
 
@@ -79,6 +84,7 @@
         );
         inputRange.value = "";
         inputAmount.value = "";
+        return;
       }
     }
   }
@@ -143,19 +149,23 @@
   }
 
   function reachLimit() {
-    if (state.players.length === state.range) {
+    // ⚠️ Solo ejecuta la lógica si realmente hay jugadores
+    if (state.players.length === state.range && state.range > 0) {
       state.getLimit = true;
-      if (state.getLimit === true) {
-        const sectionAddPlayer = document.getElementById("add_player");
-        const divAddPlayerForm = document.getElementById("add_player_form");
-        if (divAddPlayerForm) {
-          divAddPlayerForm.style.display = "none";
-          const h2 = document.createElement("h2");
-          h2.id = "message_title";
-          h2.textContent =
-            "El cupo de jugadores está completo. Ahora JUGEMOS!!!";
-          sectionAddPlayer.appendChild(h2);
-        }
+
+      const sectionAddPlayer = document.getElementById("add_player");
+      const divAddPlayerForm = document.getElementById("add_player_form");
+
+      if (divAddPlayerForm) {
+        divAddPlayerForm.style.display = "none";
+      }
+
+      // Evitar duplicar mensaje si ya existe
+      if (!document.getElementById("message_title")) {
+        const h2 = document.createElement("h2");
+        h2.id = "message_title";
+        h2.textContent = "El cupo de jugadores está completo. Ahora JUGEMOS!!!";
+        sectionAddPlayer.appendChild(h2);
       }
     }
   }
@@ -346,6 +356,7 @@
     state.range = 0;
     state.amount = 0;
     state.getLimit = false;
+    state.prize = 0;
     document.getElementById("range").style.display = "flex";
     document.getElementById("display_players").style.display = "none";
 
