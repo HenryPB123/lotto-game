@@ -20,9 +20,12 @@ header {
   text-align: center;
   padding: 20px;
   background: #1a252f;
+}
+
+header h1 {
   color: #fff;
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 2rem;
+  font-weight: 300;
 }
 
 footer {
@@ -47,6 +50,7 @@ main {
 }
 
 section {
+  display: flex;
   background: rgba(255, 255, 255, 0.05);
   padding: 20px;
   border-radius: 12px;
@@ -67,6 +71,12 @@ section {
 .range_field h2 {
   text-align: center;
   padding: 0.5rem;
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+
+.range_field p {
+  text-align: justify;
 }
 
 .container_fields {
